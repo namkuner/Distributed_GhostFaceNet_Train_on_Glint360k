@@ -3,15 +3,15 @@ from easydict import EasyDict as edict
 config = edict()
 
 #Train
-config.batch_size = 64
+config.batch_size = 16
 
 #dataset
-config.rec = "ms1-mv3-asian-face"
-config.num_classes = 6579
-config.num_image = 300000
-config.num_epoch = 30
+config.rec = "faces_glint"
+config.num_classes = 180855
+config.num_image = 6753545
+config.num_epoch = 40
 config.warmup_epoch = 0
-config.val_targets =['lfw', 'cfp_fp', "agedb_30","vilfw"]
+config.val_targets =['lfw', 'cfp_fp', "agedb_30"]
 config.seed = 2048
 # Margin Base Softmax
 config.margin_list = (1.0, 0.0, 0.4)
@@ -48,7 +48,7 @@ config.interclass_filtering_threshold = 0
 
 #Logging
 config.save_all_states = True
-config.output = "ms1mv3_asian_arcface"
+config.output = "faces_glint"
 config.verbose = 2000
 config.frequent = 10
 

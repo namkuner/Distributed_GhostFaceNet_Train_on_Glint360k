@@ -21,7 +21,7 @@ class CallBackVerification(object):
         self.ver_name_list: List[str] = []
         if self.rank is 0:
             self.init_dataset(val_targets=val_targets, data_dir=rec_prefix, image_size=image_size)
-
+        self.best_acc = 0
         self.summary_writer = summary_writer
         self.wandb_logger = wandb_logger
 
@@ -38,14 +38,16 @@ class CallBackVerification(object):
             if self.wandb_logger:
                 import wandb
                 self.wandb_logger.log({
-                    f'Acc/val-Acc1 {self.ver_name_list[i]}': acc1,
-                    f'Acc/val-Acc2 {self.ver_name_list[i]}': acc2,
-                    # f'Acc/val-std1 {self.ver_name_list[i]}': std1,
-                    # f'Acc/val-std2 {self.ver_name_list[i]}': acc2,
+                    f'Acc/val-Acc1 {self.ver_name_list[i]} - namkuner': acc1,
+                    f'Acc/val-Acc2 {self.ver_name_list[i]} - namkuner': acc2,
+                    f'Acc/val-std1 {self.ver_name_list[i]} - namkuner': std1,
+                    f'Acc/val-std2 {self.ver_name_list[i]} - namkuner': std2,
+                    f'Acc/val-XNorm {self.ver_name_list[i]} - namkuner': std2
                 })
 
             if acc2 > self.highest_acc_list[i]:
                 self.highest_acc_list[i] = acc2
+                self.best_acc = acc2
             logging.info(
                 '[%s][%d]Accuracy-Highest: %1.5f' % (self.ver_name_list[i], global_step, self.highest_acc_list[i]))
             results.append(acc2)
@@ -66,7 +68,7 @@ class CallBackVerification(object):
 
 
 class CallBackLogging(object):
-    def __init__(self, frequent, total_step, batch_size, start_step=0,writer=None):
+    def __init__(self, frequent, total_step, batch_size, start_step=0,writer=None,wandb_logger=None):
         self.frequent: int = frequent
         self.rank: int = distributed.get_rank()
         self.world_size: int = distributed.get_world_size()
@@ -75,7 +77,7 @@ class CallBackLogging(object):
         self.start_step: int = start_step
         self.batch_size: int = batch_size
         self.writer = writer
-
+        self.wandb_logger = wandb_logger
         self.init = False
         self.tic = 0
 
@@ -112,6 +114,10 @@ class CallBackLogging(object):
                               speed_total, loss.avg, learning_rate, epoch, global_step,
                               grad_scaler.get_scale(), time_for_end
                           )
+                    self.wandb_logger.log({
+                    f'Speed (samples/sec) - namkuner': speed_total,
+                    f'Required (hours)- namkuner': time_for_end,
+                    })
                 else:
                     msg = "Speed %.2f samples/sec   Loss %.4f   LearningRate %.6f   Epoch: %d   Global Step: %d   " \
                           "Required: %1.f hours" % (

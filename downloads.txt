@@ -1,0 +1,6 @@
+wget https://huggingface.co/datasets/namkuner/namkuner_face_dataset/resolve/main/ms1-mv3-asian-face.zip?download=true
+unzip ms1-mv3-asian-face.zip?download=true -d /workspace/Distributed_GhostFaceNet_Train_on_Glint360k/data
+wget -P https://huggingface.co/datasets/namkuner/namkuner_face_dataset/resolve/main/lfw.bin?download=true
+wget -P https://huggingface.co/datasets/namkuner/namkuner_face_dataset/resolve/main/agedb_30.bin?download=true
+wget -P https://huggingface.co/datasets/namkuner/namkuner_face_dataset/resolve/main/cfp_fp.bin?download=true
+wget -P https://huggingface.co/datasets/namkuner/namkuner_face_dataset/resolve/main/vilfw.bin?download=true

@@ -36,10 +36,10 @@ config.wandb_key = "daa38a012f1993bc802203d31f828a53c6605938"
 config.suffix_run_name = None
 config.using_wandb = True
 config.wandb_entity = "namkunerr"
-config.wandb_project = "Distributed_GhostFaceNets"
+config.wandb_project = "GhostFaceNets on Asian and MS1MV3 Dataset"
 config.wandb_log_all = True
 config.save_artifacts = True
-config.wandb_resume = False # resume wandb run: Only if the you wand t resume the last run that it was interrupted
+config.wandb_resume = "allow" # resume wandb run: Only if the you wand t resume the last run that it was interrupted
 config.wandb_id = "bdx6o42y"
 config.notes ="namkuner"
 # Partial FC
@@ -48,7 +48,7 @@ config.interclass_filtering_threshold = 0
 
 #Logging
 config.save_all_states = True
-config.output = "ms1mv3_asian_arcface"
+config.output = "ms1mv3_asian_arcface_ghostfacenets"
 config.verbose = 2000
 config.frequent = 10
 

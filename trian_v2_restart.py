@@ -75,6 +75,7 @@ def main(args):
                 sync_tensorboard=True,
                 resume=cfg.wandb_resume,
                 name=run_name,
+                id = cfg.wandb_id,
                 notes=cfg.notes) if rank == 0 or cfg.wandb_log_all else None
             if wandb_logger:
                 wandb_logger.config.update(cfg)

@@ -162,7 +162,7 @@ ellzaf_ml.code-workspace
 Detectedface
 weights
 VILFWCut/
-ms1mv3_asian_arcface_ghostfacenets/
+ms1mv3_asian_arcface_ghostfacenets/tensorboard/
 wandb/
 ms1-mv3-asian-face/
 test_dataset/
