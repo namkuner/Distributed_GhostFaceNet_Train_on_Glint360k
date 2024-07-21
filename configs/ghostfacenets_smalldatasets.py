@@ -3,7 +3,7 @@ from easydict import EasyDict as edict
 config = edict()
 
 #Train
-config.batch_size = 128
+config.batch_size = 16
 
 #dataset
 config.rec = "small_dataset"
@@ -11,7 +11,7 @@ config.num_classes = 198
 config.num_image = 10046
 config.num_epoch = 20
 config.warmup_epoch = 0
-config.val_targets =['lfw', 'cfp_fp', "agedb_30"]
+config.val_targets =['lfw', 'vilfw' ]
 config.seed = 2048
 # Margin Base Softmax
 config.margin_list = (1.0, 0.0, 0.4)
@@ -34,7 +34,7 @@ config.checkpoint = 0
 # WandB Logger
 config.wandb_key = "daa38a012f1993bc802203d31f828a53c6605938"
 config.suffix_run_name = None
-config.using_wandb = True
+config.using_wandb = False
 config.wandb_entity = "namkunerr"
 config.wandb_project = "GhostFaceNets on Asian and MS1MV3 Dataset"
 config.wandb_log_all = True
@@ -49,7 +49,7 @@ config.interclass_filtering_threshold = 0
 #Logging
 config.save_all_states = True
 config.output = "ms1mv3_asian_arcface_ghostfacenets"
-config.verbose = 2000
+config.verbose = 10
 config.frequent = 10
 
 # Gradient ACC

@@ -3,7 +3,7 @@ from easydict import EasyDict as edict
 config = edict()
 
 #Train
-config.batch_size = 64
+config.batch_size = 128
 
 #dataset
 config.rec = "ms1-mv3-asian-face"
