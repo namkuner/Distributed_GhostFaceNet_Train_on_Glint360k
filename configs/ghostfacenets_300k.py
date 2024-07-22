@@ -11,7 +11,7 @@ config.num_classes = 6579
 config.num_image = 300000
 config.num_epoch = 30
 config.warmup_epoch = 0
-config.val_targets =['lfw', 'cfp_fp', "agedb_30","vilfw"]
+config.val_targets =['lfw', 'cfp_fp',"vilfw"]
 config.seed = 2048
 # Margin Base Softmax
 config.margin_list = (1.0, 0.5, 0.0)

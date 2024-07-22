@@ -3,7 +3,7 @@ from easydict import EasyDict as edict
 config = edict()
 
 #Train
-config.batch_size = 16
+config.batch_size = 128
 
 #dataset
 config.rec = "faces_glint"
@@ -11,15 +11,15 @@ config.num_classes = 180855
 config.num_image = 6753545
 config.num_epoch = 40
 config.warmup_epoch = 0
-config.val_targets =['lfw', 'cfp_fp', "agedb_30"]
+config.val_targets =['lfw', 'cfp_fp',"vilfw"]
 config.seed = 2048
 # Margin Base Softmax
 config.margin_list = (1.0, 0.5, 0.0)
 config.optimizer = "sgd"
 config.lr = 0.1
 config.momentum = 0.9
-config.weight_decay = 5e-4
-config.num_workers = 2 #dataloader num_worker
+config.weight_decay = 1e-4
+config.num_workers = 4 #dataloader num_worker
 #Model
 config.network = "ghostfacenetsv2"
 config.IMAGE_SIZE = 112
