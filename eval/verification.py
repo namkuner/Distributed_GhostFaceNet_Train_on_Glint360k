@@ -381,29 +381,32 @@ def dumpR(data_set,
 #     diff = time_now - time0
 #     print('model loading time', diff.total_seconds())
 #
-#     ver_list = []
-#     ver_name_list = []
-#     for name in args.target.split(','):
-#         path = os.path.join(args.data_dir, name + ".bin")
-#         if os.path.exists(path):
-#             print('loading.. ', name)
-#             data_set = load_bin(path, image_size)
-#             ver_list.append(data_set)
-#             ver_name_list.append(name)
-#
-#     if args.mode == 0:
-#         for i in range(len(ver_list)):
-#             results = []
-#             for model in nets:
-#                 acc1, std1, acc2, std2, xnorm, embeddings_list = test(
-#                     ver_list[i], model, args.batch_size, args.nfolds)
-#                 print('[%s]XNorm: %f' % (ver_name_list[i], xnorm))
-#                 print('[%s]Accuracy: %1.5f+-%1.5f' % (ver_name_list[i], acc1, std1))
-#                 print('[%s]Accuracy-Flip: %1.5f+-%1.5f' % (ver_name_list[i], acc2, std2))
-#                 results.append(acc2)
-#             print('Max of [%s] is %1.5f' % (ver_name_list[i], np.max(results)))
+    # ver_list = []
+    # ver_name_list = []
+    # for name in args.target.split(','):
+    #     path = os.path.join(args.data_dir, name + ".bin")
+    #     if os.path.exists(path):
+    #         print('loading.. ', name)
+    #         data_set = load_bin(path, image_size)
+    #         ver_list.append(data_set)
+    #         ver_name_list.append(name)
+    #
+    # if args.mode == 0:
+    #     for i in range(len(ver_list)):
+    #         results = []
+    #         for model in nets:
+    #             acc1, std1, acc2, std2, xnorm, embeddings_list = test(
+    #                 ver_list[i], model, args.batch_size, args.nfolds)
+    #             print('[%s]XNorm: %f' % (ver_name_list[i], xnorm))
+    #             print('[%s]Accuracy: %1.5f+-%1.5f' % (ver_name_list[i], acc1, std1))
+    #             print('[%s]Accuracy-Flip: %1.5f+-%1.5f' % (ver_name_list[i], acc2, std2))
+    #             results.append(acc2)
+    #         print('Max of [%s] is %1.5f' % (ver_name_list[i], np.max(results)))
 #     elif args.mode == 1:
 #         raise ValueError
 #     else:
 #         model = nets[0]
 #         dumpR(ver_list[0], model, args.batch_size, args.target)
+
+
+

@@ -14,7 +14,7 @@ config.warmup_epoch = 0
 config.val_targets =['lfw', 'cfp_fp', "agedb_30"]
 config.seed = 2048
 # Margin Base Softmax
-config.margin_list = (1.0, 0.0, 0.4)
+config.margin_list = (1.0, 0.5, 0.0)
 config.optimizer = "sgd"
 config.lr = 0.1
 config.momentum = 0.9
