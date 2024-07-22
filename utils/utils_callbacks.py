@@ -28,8 +28,9 @@ class CallBackVerification(object):
 
     def ver_test(self, backbone: torch.nn.Module, global_step: int):
         results = []
+        result = []
         for i in range(len(self.ver_list)):
-            result =[]
+
             acc1, std1, acc2, std2, xnorm, embeddings_list = verification.test(
                 self.ver_list[i], backbone, 128, 10)
             result.append([acc2,std2])
