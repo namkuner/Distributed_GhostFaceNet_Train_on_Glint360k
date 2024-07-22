@@ -217,14 +217,26 @@ def main(args):
                 callback_logging(global_step, loss_am, epoch, cfg.fp16, lr_scheduler.get_last_lr()[0], amp)
 
                 if global_step % cfg.verbose == 0 and global_step > 0:
-                    callback_verification(global_step, backbone)
-                    if epoch > 0.8 * cfg.num_epoch:
+                    res =  callback_verification(global_step, backbone)
+                    if res is not None :
+
+                        for idx  in range(len(cfg.val_targets)):
+                            acc2,std2 =res[idx]
+                            wandb_logger.log({
+                                f'Acc/val-Acc2 {cfg.val_targets[idx]} - namkuner': acc2,
+                                f'Acc/val-std2 {cfg.val_targets[idx]} - namkuner': std2
+                            })
+                    if epoch + 1 > 0.8 * cfg.num_epoch:
                         if best_loss > loss_am.avg:
                             best_loss = loss_am.avg
+                            if not os.path.exists(os.path.join(cfg.output, "Loss")):
+                                os.mkdir(os.path.join(cfg.output, "Loss"))
                             path_module = os.path.join(cfg.output, "Loss", f"{best_loss}.pt")
                             torch.save(backbone.module.state_dict(), path_module)
                         if best_acc < callback_verification.best_acc:
                             best_acc = callback_verification.best_acc
+                            if not os.path.exists(os.path.join(cfg.output, "Acc")):
+                                os.mkdir(os.path.join(cfg.output, "Acc"))
                             path_module = os.path.join(cfg.output, "Acc", f"{best_acc}.pt")
                             torch.save(backbone.module.state_dict(), path_module)
 

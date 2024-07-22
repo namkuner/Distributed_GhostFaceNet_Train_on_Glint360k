@@ -8,6 +8,7 @@ import torch
 from eval import verification
 from utils.utils_logging import AverageMeter
 from torch.utils.tensorboard import SummaryWriter
+import wandb
 from torch import distributed
 
 
@@ -28,22 +29,16 @@ class CallBackVerification(object):
     def ver_test(self, backbone: torch.nn.Module, global_step: int):
         results = []
         for i in range(len(self.ver_list)):
+            result =[]
             acc1, std1, acc2, std2, xnorm, embeddings_list = verification.test(
-                self.ver_list[i], backbone, 10, 10)
+                self.ver_list[i], backbone, 128, 10)
+            result.append([acc2,std2])
             logging.info('[%s][%d]XNorm: %f' % (self.ver_name_list[i], global_step, xnorm))
             logging.info('[%s][%d]Accuracy-Flip: %1.5f+-%1.5f' % (self.ver_name_list[i], global_step, acc2, std2))
 
             self.summary_writer: SummaryWriter
             self.summary_writer.add_scalar(tag=self.ver_name_list[i], scalar_value=acc2, global_step=global_step, )
-            if self.wandb_logger:
-                import wandb
-                self.wandb_logger.log({
-                    f'Acc/val-Acc1 {self.ver_name_list[i]} - namkuner': acc1,
-                    f'Acc/val-Acc2 {self.ver_name_list[i]} - namkuner': acc2,
-                    f'Acc/val-std1 {self.ver_name_list[i]} - namkuner': std1,
-                    f'Acc/val-std2 {self.ver_name_list[i]} - namkuner': std2,
-                    f'Acc/val-XNorm {self.ver_name_list[i]} - namkuner': std2
-                })
+
 
             if acc2 > self.highest_acc_list[i]:
                 self.highest_acc_list[i] = acc2
@@ -51,6 +46,7 @@ class CallBackVerification(object):
             logging.info(
                 '[%s][%d]Accuracy-Highest: %1.5f' % (self.ver_name_list[i], global_step, self.highest_acc_list[i]))
             results.append(acc2)
+        return result
 
     def init_dataset(self, val_targets, data_dir, image_size):
         for name in val_targets:
@@ -63,9 +59,11 @@ class CallBackVerification(object):
     def __call__(self, num_update, backbone: torch.nn.Module):
         if self.rank is 0 and num_update > 0:
             backbone.eval()
-            self.ver_test(backbone, num_update)
+            res = self.ver_test(backbone, num_update)
             backbone.train()
-
+            return res
+        else:
+            return None
 
 class CallBackLogging(object):
     def __init__(self, frequent, total_step, batch_size, start_step=0,writer=None,wandb_logger=None):

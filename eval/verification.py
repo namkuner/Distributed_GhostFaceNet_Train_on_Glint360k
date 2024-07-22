@@ -226,6 +226,7 @@ def load_bin(path, image_size):
 @torch.no_grad()
 def test(data_set, backbone, batch_size, nfolds=10):
     print('testing verification..')
+    print("batch size", batch_size)
     data_list = data_set[0]
     issame_list = data_set[1]
     embeddings_list = []
