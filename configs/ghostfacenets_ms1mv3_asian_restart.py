@@ -3,7 +3,7 @@ from easydict import EasyDict as edict
 config = edict()
 
 #Train
-config.batch_size = 16
+config.batch_size = 256
 
 #dataset
 config.rec = "faces_glint"
@@ -19,7 +19,7 @@ config.optimizer = "sgd"
 config.lr = 0.1
 config.momentum = 0.9
 config.weight_decay = 5e-4
-config.num_workers = 2 #dataloader num_worker
+config.num_workers = 8 #dataloader num_worker
 #Model
 config.network = "ghostfacenetsv2"
 config.IMAGE_SIZE = 112
@@ -29,7 +29,7 @@ config.embedding_size = 512
 config.fp16 = True
 
 #Resume
-config.resume = False
+config.resume = True
 config.checkpoint = 0
 # WandB Logger
 config.wandb_key = "daa38a012f1993bc802203d31f828a53c6605938"

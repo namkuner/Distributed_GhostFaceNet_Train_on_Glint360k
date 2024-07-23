@@ -113,10 +113,11 @@ class CallBackLogging(object):
                               speed_total, loss.avg, learning_rate, epoch, global_step,
                               grad_scaler.get_scale(), time_for_end
                           )
-                    self.wandb_logger.log({
-                    f'Speed (samples/sec) - namkuner': speed_total,
-                    f'Required (hours)- namkuner': time_for_end,
-                    })
+                    if self.wandb_logger is not  None:
+                        self.wandb_logger.log({
+                        f'Speed (samples/sec) - namkuner': speed_total,
+                        f'Required (hours)- namkuner': time_for_end,
+                        })
                 else:
                     msg = "Speed %.2f samples/sec   Loss %.4f   LearningRate %.6f   Epoch: %d   Global Step: %d   " \
                           "Required: %1.f hours" % (

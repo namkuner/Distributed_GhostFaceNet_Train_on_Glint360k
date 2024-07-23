@@ -3,7 +3,7 @@ from easydict import EasyDict as edict
 config = edict()
 
 #Train
-config.batch_size = 128
+config.batch_size = 256
 
 #dataset
 config.rec = "faces_glint"
