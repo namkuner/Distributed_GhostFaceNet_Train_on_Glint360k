@@ -19,7 +19,7 @@ config.optimizer = "sgd"
 config.lr = 0.1
 config.momentum = 0.9
 config.weight_decay = 5e-4
-config.num_workers = 8 #dataloader num_worker
+config.num_workers = 6 #dataloader num_worker
 #Model
 config.network = "ghostfacenetsv2"
 config.IMAGE_SIZE = 112
@@ -37,9 +37,9 @@ config.suffix_run_name = None
 config.using_wandb = True
 config.wandb_entity = "namkunerr"
 config.wandb_project = "Distributed_GhostFaceNets"
-config.wandb_log_all = True
-config.save_artifacts = True
-config.wandb_resume = "allow" # resume wandb run: Only if the you wand t resume the last run that it was interrupted
+config.wandb_log_all = False
+config.save_artifacts = False
+config.wandb_resume = "must" # resume wandb run: Only if the you wand t resume the last run that it was interrupted
 config.wandb_id = "bdx6o42y"
 config.notes ="namkuner"
 # Partial FC
@@ -48,7 +48,7 @@ config.interclass_filtering_threshold = 0
 
 #Logging
 config.save_all_states = True
-config.output = "faces_glint"
+config.output = "ms1mv3-asian"
 config.verbose = 2000
 config.frequent = 10
 
