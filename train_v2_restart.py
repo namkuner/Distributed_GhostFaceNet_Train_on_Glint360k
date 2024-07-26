@@ -200,6 +200,7 @@ def main(args):
             lr_scheduler.step()
 
             with torch.no_grad():
+                loss_am.update(loss.item(), 1)
                 if wandb_logger:
                     wandb_logger.log({
                         'Loss/Step Loss': loss.item(),
@@ -211,7 +212,7 @@ def main(args):
 
 
 
-                loss_am.update(loss.item(), 1)
+
 
 
                 callback_logging(global_step, loss_am, epoch, cfg.fp16, lr_scheduler.get_last_lr()[0], amp)

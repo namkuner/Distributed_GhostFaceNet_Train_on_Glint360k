@@ -9,7 +9,7 @@ config.batch_size = 256
 config.rec = "faces_glint"
 config.num_classes = 180855
 config.num_image = 6753545
-config.num_epoch = 40
+config.num_epoch = 25
 config.warmup_epoch = 0
 config.val_targets =['lfw', 'cfp_fp',"vilfw"]
 config.seed = 2048
@@ -38,9 +38,9 @@ config.using_wandb = True
 config.wandb_entity = "namkunerr"
 config.wandb_project = "Distributed_GhostFaceNets"
 config.wandb_log_all = False
-config.save_artifacts = False
+config.save_artifacts = True
 config.wandb_resume = False # resume wandb run: Only if the you wand t resume the last run that it was interrupted
-config.wandb_id = "bdx6o42y"
+config.wandb_id = "db6bngah"
 config.notes ="namkuner"
 # Partial FC
 config.sample_rate = 1
@@ -48,7 +48,7 @@ config.interclass_filtering_threshold = 0
 
 #Logging
 config.save_all_states = True
-config.output = "faces_glint"
+config.output = "ms1mv3-asian"
 config.verbose = 2000
 config.frequent = 10
 
