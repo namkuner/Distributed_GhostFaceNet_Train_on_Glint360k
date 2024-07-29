@@ -6,7 +6,7 @@ config = edict()
 config.batch_size = 128
 
 #dataset
-config.rec = "glint_360k"
+config.rec = "glint360k"
 config.num_classes = 360232
 config.num_image = 17091657
 config.num_epoch = 20
@@ -36,7 +36,7 @@ config.wandb_key = "daa38a012f1993bc802203d31f828a53c6605938"
 config.suffix_run_name = None
 config.using_wandb = True
 config.wandb_entity = "namkunerr"
-config.wandb_project = "Distributed_GhostFaceNets"
+config.wandb_project = "Glint_360k"
 config.wandb_log_all = False
 config.save_artifacts = True
 config.wandb_resume = False # resume wandb run: Only if the you wand t resume the last run that it was interrupted

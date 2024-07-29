@@ -6,7 +6,7 @@ config = edict()
 config.batch_size = 128
 
 #dataset
-config.rec = "glint_360k"
+config.rec = "glint360k"
 config.num_classes = 360232
 config.num_image = 17091657
 config.num_epoch = 20
